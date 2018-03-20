@@ -1,2 +1,6 @@
 include versioneer.py
 include pygbe/_version.py
+include pygbe/tree/multipole.h
+include pygbe/tree/calculateMultipoles.h
+include pygbe/tree/direct.h
+include pygbe/util/semi_analyticalwrap.h
