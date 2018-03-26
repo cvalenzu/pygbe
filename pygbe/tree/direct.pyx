@@ -44,7 +44,7 @@ cdef extern from "direct.h":
         	
 
 
-def computeDiagonal(np.ndarray[REAL, ndim = 1, mode = "c"] VL, np.ndarray[REAL, ndim = 1, mode = "c"] KL, np.ndarray[REAL, ndim = 1, mode = "c"] VY, np.ndarray[REAL, ndim = 1, mode = "c"] KY, np.ndarray[REAL, ndim = 1, mode = "c"] triangle, np.ndarray[REAL, ndim = 1, mode = "c"] centers, REAL kappa, REAL K_diag, REAL V_diag, np.ndarray[REAL, ndim = 1, mode = "c"] xk, np.ndarray[REAL, ndim = 1, mode = "c"]wk):
+def computeDiagonal(np.ndarray[REAL, ndim = 1, mode = "c"] VL, np.ndarray[REAL, ndim = 1, mode = "c"] KL, np.ndarray[REAL, ndim = 1, mode = "c"] VY, np.ndarray[REAL, ndim = 1, mode = "c"] KY, np.ndarray[REAL, ndim = 1 ] triangle, np.ndarray[REAL, ndim = 1 ] centers, REAL kappa, REAL K_diag, REAL V_diag, np.ndarray[REAL, ndim = 1 ] xk, np.ndarray[REAL, ndim = 1 ]wk):
 	cdef np.int32_t VLSize = len(VL)
 	cdef np.int32_t KLSize = len(KL)
 	cdef np.int32_t VYSize = len(VY)
@@ -56,7 +56,7 @@ def computeDiagonal(np.ndarray[REAL, ndim = 1, mode = "c"] VL, np.ndarray[REAL, 
 	computeDiagonal_cy(<REAL*> &VL[0], <int> VLSize, <REAL*> &KL[0], <int> KLSize, <REAL*> &VY[0], <int> VYSize, <REAL*> &KY[0], <int> KYSize, <REAL*> &triangle[0], <int> triangleSize, <REAL*> &centers[0], <int> centersSize, <REAL> kappa, <REAL> K_diag, <REAL> V_diag, <REAL*> &xk[0], <int> xkSize, <REAL*> &wk[0], <int> wkSize)
 
 
-def direct_sort(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim = 1, mode = "c"] V_aux, int LorY, REAL K_diag, REAL V_diag, int IorE, np.ndarray[REAL, ndim = 1, mode = "c"] triangle, np.ndarray[int, ndim = 1, mode = "c"] tri, np.ndarray[int, ndim = 1, mode = "c"] k, np.ndarray[REAL, ndim = 1, mode = "c"] xi, np.ndarray[REAL, ndim = 1, mode = "c"] yi, np.ndarray[REAL, ndim = 1, mode = "c"] zi, np.ndarray[REAL, ndim = 1, mode = "c"] s_xj, np.ndarray[REAL, ndim = 1, mode = "c"] s_yj, np.ndarray[REAL, ndim = 1, mode = "c"] s_zj, np.ndarray[REAL, ndim = 1, mode = "c"] xt, np.ndarray[REAL, ndim = 1, mode = "c"] yt, np.ndarray[REAL, ndim = 1, mode = "c"] zt, np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] mx, np.ndarray[REAL, ndim = 1, mode = "c"] my, np.ndarray[REAL, ndim = 1, mode = "c"] mz, np.ndarray[REAL, ndim = 1, mode = "c"] mKclean, np.ndarray[REAL, ndim = 1, mode = "c"] mVclean, np.ndarray[int, ndim = 1, mode = "c"] interList, np.ndarray[int, ndim = 1, mode = "c"] offTar, np.ndarray[int, ndim = 1, mode = "c"] sizeTar, np.ndarray[int, ndim = 1, mode = "c"] offSrc, np.ndarray[int, ndim = 1, mode = "c"] offTwg, np.ndarray[int, ndim = 1, mode = "c"] target, np.ndarray[REAL, ndim = 1, mode = "c"] Area, np.ndarray[REAL, ndim = 1, mode = "c"] sglInt_int, np.ndarray[REAL, ndim = 1, mode = "c"] sglInt_ext, np.ndarray[REAL, ndim = 1, mode = "c"] xk, np.ndarray[REAL, ndim = 1, mode = "c"] wk, np.ndarray[REAL, ndim = 1, mode = "c"] Xsk, np.ndarray[REAL, ndim = 1, mode = "c"] Wsk, REAL kappa, REAL threshold, REAL eps, REAL w0, np.ndarray[REAL, ndim = 1, mode = "c"] aux):
+def direct_sort(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim = 1, mode = "c"] V_aux, int LorY, REAL K_diag, REAL V_diag, int IorE, np.ndarray[REAL, ndim = 1 ] triangle, np.ndarray[int, ndim = 1 ] tri, np.ndarray[int, ndim = 1 ] k, np.ndarray[REAL, ndim = 1 ] xi, np.ndarray[REAL, ndim = 1 ] yi, np.ndarray[REAL, ndim = 1 ] zi, np.ndarray[REAL, ndim = 1 ] s_xj, np.ndarray[REAL, ndim = 1 ] s_yj, np.ndarray[REAL, ndim = 1 ] s_zj, np.ndarray[REAL, ndim = 1 ] xt, np.ndarray[REAL, ndim = 1 ] yt, np.ndarray[REAL, ndim = 1 ] zt, np.ndarray[REAL, ndim = 1 ] m, np.ndarray[REAL, ndim = 1 ] mx, np.ndarray[REAL, ndim = 1 ] my, np.ndarray[REAL, ndim = 1 ] mz, np.ndarray[REAL, ndim = 1 ] mKclean, np.ndarray[REAL, ndim = 1 ] mVclean, np.ndarray[int, ndim = 1 ] interList, np.ndarray[int, ndim = 1 ] offTar, np.ndarray[int, ndim = 1 ] sizeTar, np.ndarray[int, ndim = 1 ] offSrc, np.ndarray[int, ndim = 1 ] offTwg, np.ndarray[int, ndim = 1 ] target, np.ndarray[REAL, ndim = 1 ] Area, np.ndarray[REAL, ndim = 1 ] sglInt_int, np.ndarray[REAL, ndim = 1 ] sglInt_ext, np.ndarray[REAL, ndim = 1 ] xk, np.ndarray[REAL, ndim = 1 ] wk, np.ndarray[REAL, ndim = 1 ] Xsk, np.ndarray[REAL, ndim = 1 ] Wsk, REAL kappa, REAL threshold, REAL eps, REAL w0, np.ndarray[REAL, ndim = 1 ] aux):
 	cdef np.int32_t K_auxSize = len(K_aux)
 	cdef np.int32_t V_auxSize = len(V_aux)
 	cdef np.int32_t triangleSize = len(triangle)
@@ -103,13 +103,13 @@ def direct_sort(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, n
 
 
 def directKt_sort(np.ndarray[REAL, ndim = 1, mode = "c"] Ktx_aux, np.ndarray[REAL, ndim = 1, mode = "c"] Kty_aux, np.ndarray[REAL, ndim = 1, mode = "c"] Ktz_aux, 
-        	int LorY, np.ndarray[REAL, ndim = 1, mode = "c"] triangle,
-        	np.ndarray[int, ndim = 1, mode = "c"] k, np.ndarray[REAL, ndim = 1, mode = "c"] s_xj, np.ndarray[REAL, ndim = 1, mode = "c"] s_yj, np.ndarray[REAL, ndim = 1, mode = "c"] s_zj, 
-        	np.ndarray[REAL, ndim = 1, mode = "c"] xt, np.ndarray[REAL, ndim = 1, mode = "c"] yt, np.ndarray[REAL, ndim = 1, mode = "c"] zt,
-        	np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] mKclean,
-        	np.ndarray[int, ndim = 1, mode = "c"] interList, np.ndarray[int, ndim = 1, mode = "c"] offTar, np.ndarray[int, ndim = 1, mode = "c"] sizeTar, 
-        	np.ndarray[int, ndim = 1, mode = "c"] offSrc, np.ndarray[int, ndim = 1, mode = "c"] offTwg, np.ndarray[REAL, ndim = 1, mode = "c"] Area,
-        	np.ndarray[REAL, ndim = 1, mode = "c"] Xsk, np.ndarray[REAL, ndim = 1, mode = "c"] Wsk, REAL kappa, REAL threshold, REAL eps, np.ndarray[REAL, ndim = 1, mode = "c"] aux):
+        	int LorY, np.ndarray[REAL, ndim = 1 ] triangle,
+        	np.ndarray[int, ndim = 1 ] k, np.ndarray[REAL, ndim = 1 ] s_xj, np.ndarray[REAL, ndim = 1 ] s_yj, np.ndarray[REAL, ndim = 1 ] s_zj, 
+        	np.ndarray[REAL, ndim = 1 ] xt, np.ndarray[REAL, ndim = 1 ] yt, np.ndarray[REAL, ndim = 1 ] zt,
+        	np.ndarray[REAL, ndim = 1 ] m, np.ndarray[REAL, ndim = 1 ] mKclean,
+        	np.ndarray[int, ndim = 1 ] interList, np.ndarray[int, ndim = 1 ] offTar, np.ndarray[int, ndim = 1 ] sizeTar, 
+        	np.ndarray[int, ndim = 1 ] offSrc, np.ndarray[int, ndim = 1 ] offTwg, np.ndarray[REAL, ndim = 1 ] Area,
+        	np.ndarray[REAL, ndim = 1 ] Xsk, np.ndarray[REAL, ndim = 1 ] Wsk, REAL kappa, REAL threshold, REAL eps, np.ndarray[REAL, ndim = 1 ] aux):
 	cdef np.int32_t Ktx_auxSize = len(Ktx_aux)
 	cdef np.int32_t Kty_auxSize = len(Kty_aux)
 	cdef np.int32_t Ktz_auxSize = len(Ktz_aux)
@@ -142,7 +142,7 @@ def directKt_sort(np.ndarray[REAL, ndim = 1, mode = "c"] Ktx_aux, np.ndarray[REA
         	<REAL*> &Xsk[0], <int> XskSize, <REAL*> &Wsk[0], <int> WskSize, <REAL> kappa, <REAL> threshold, <REAL> eps, <REAL*> &aux[0], <int> auxSize)
 
 
-def direct_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim = 1, mode = "c"] V_aux, int LorY, REAL K_diag, REAL V_diag, int IorE, np.ndarray[REAL, ndim = 1, mode = "c"] triangle, np.ndarray[int, ndim = 1, mode = "c"] tri, np.ndarray[int, ndim = 1, mode = "c"] k, np.ndarray[REAL, ndim = 1, mode = "c"] xi, np.ndarray[REAL, ndim = 1, mode = "c"] yi, np.ndarray[REAL, ndim = 1, mode = "c"] zi, np.ndarray[REAL, ndim = 1, mode = "c"] s_xj, np.ndarray[REAL, ndim = 1, mode = "c"] s_yj, np.ndarray[REAL, ndim = 1, mode = "c"] s_zj, np.ndarray[REAL, ndim = 1, mode = "c"] xt, np.ndarray[REAL, ndim = 1, mode = "c"] yt, np.ndarray[REAL, ndim = 1, mode = "c"] zt, np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] mx, np.ndarray[REAL, ndim = 1, mode = "c"] my, np.ndarray[REAL, ndim = 1, mode = "c"] mz, np.ndarray[REAL, ndim = 1, mode = "c"] mKclean, np.ndarray[REAL, ndim = 1, mode = "c"] mVclean, np.ndarray[int, ndim = 1, mode = "c"] target, np.ndarray[REAL, ndim = 1, mode = "c"] Area, np.ndarray[REAL, ndim = 1, mode = "c"] sglInt_int, np.ndarray[REAL, ndim = 1, mode = "c"] sglInt_ext, np.ndarray[REAL, ndim = 1, mode = "c"] xk, np.ndarray[REAL, ndim = 1, mode = "c"] wk, np.ndarray[REAL, ndim = 1, mode = "c"] Xsk, np.ndarray[REAL, ndim = 1, mode = "c"] Wsk, REAL kappa, REAL threshold, REAL eps, REAL w0, np.ndarray[REAL, ndim = 1, mode = "c"] aux):
+def direct_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim = 1, mode = "c"] V_aux, int LorY, REAL K_diag, REAL V_diag, int IorE, np.ndarray[REAL, ndim = 1 ] triangle, np.ndarray[int, ndim = 1 ] tri, np.ndarray[int, ndim = 1 ] k, np.ndarray[REAL, ndim = 1 ] xi, np.ndarray[REAL, ndim = 1 ] yi, np.ndarray[REAL, ndim = 1 ] zi, np.ndarray[REAL, ndim = 1 ] s_xj, np.ndarray[REAL, ndim = 1 ] s_yj, np.ndarray[REAL, ndim = 1 ] s_zj, np.ndarray[REAL, ndim = 1 ] xt, np.ndarray[REAL, ndim = 1 ] yt, np.ndarray[REAL, ndim = 1 ] zt, np.ndarray[REAL, ndim = 1 ] m, np.ndarray[REAL, ndim = 1 ] mx, np.ndarray[REAL, ndim = 1 ] my, np.ndarray[REAL, ndim = 1 ] mz, np.ndarray[REAL, ndim = 1 ] mKclean, np.ndarray[REAL, ndim = 1 ] mVclean, np.ndarray[int, ndim = 1 ] target, np.ndarray[REAL, ndim = 1 ] Area, np.ndarray[REAL, ndim = 1 ] sglInt_int, np.ndarray[REAL, ndim = 1 ] sglInt_ext, np.ndarray[REAL, ndim = 1 ] xk, np.ndarray[REAL, ndim = 1 ] wk, np.ndarray[REAL, ndim = 1 ] Xsk, np.ndarray[REAL, ndim = 1 ] Wsk, REAL kappa, REAL threshold, REAL eps, REAL w0, np.ndarray[REAL, ndim = 1 ] aux):
 	cdef np.int32_t K_auxSize = len(K_aux)
 	cdef np.int32_t V_auxSize = len(V_aux)
 	cdef np.int32_t triangleSize = len(triangle)
@@ -182,8 +182,8 @@ def direct_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim
         	<REAL> kappa, <REAL> threshold, <REAL> eps, <REAL> w0, <REAL*> &aux[0], <int> auxSize)
 
 
-def coulomb_direct(np.ndarray[REAL, ndim = 1, mode = "c"] xt, np.ndarray[REAL, ndim = 1, mode = "c"] yt, np.ndarray[REAL, ndim = 1, mode = "c"] zt, 
-                   np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] K_aux):
+def coulomb_direct(np.ndarray[REAL, ndim = 1 ] xt, np.ndarray[REAL, ndim = 1 ] yt, np.ndarray[REAL, ndim = 1 ] zt, 
+                   np.ndarray[REAL, ndim = 1 ] m, np.ndarray[REAL, ndim = 1, mode = "c"] K_aux):
 	cdef np.int32_t xtSize = len(xt)
 	cdef np.int32_t ytSize = len(yt)
 	cdef np.int32_t ztSize = len(zt)

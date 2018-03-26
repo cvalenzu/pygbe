@@ -18,7 +18,7 @@ cdef extern from "calculateMultipoles.h":
          int *Imi, int Imisize, int *Jmj, int Jmjsize, int *Kmk, int Kmksize,
          int *index, int indexSize, int *ptr, int ptrSize)
 
-def P2M(np.ndarray[REAL, ndim = 1, mode = "c"] M, np.ndarray[REAL, ndim = 1, mode = "c"] Md, np.ndarray[REAL, ndim = 1, mode = "c"] x, np.ndarray[REAL, ndim = 1, mode = "c"] y, np.ndarray[REAL, ndim = 1, mode = "c"] z, np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] mx, np.ndarray[REAL, ndim = 1, mode = "c"] my, np.ndarray[REAL, ndim = 1, mode = "c"] mz, REAL xc, REAL yc, REAL zc, np.ndarray[int, ndim = 1, mode = "c"] I, np.ndarray[int, ndim = 1, mode = "c"] J, np.ndarray[int, ndim = 1, mode = "c"] K):
+def P2M(np.ndarray[REAL, ndim = 1, mode = "c"] M, np.ndarray[REAL, ndim = 1, mode = "c"] Md, np.ndarray[REAL, ndim = 1] x, np.ndarray[REAL, ndim = 1] y, np.ndarray[REAL, ndim = 1] z, np.ndarray[REAL, ndim = 1] m, np.ndarray[REAL, ndim = 1] mx, np.ndarray[REAL, ndim = 1] my, np.ndarray[REAL, ndim = 1] mz, REAL xc, REAL yc, REAL zc, np.ndarray[int, ndim = 1] I, np.ndarray[int, ndim = 1] J, np.ndarray[int, ndim = 1] K):
 	cdef np.int32_t Msize = len(M)
 	cdef np.int32_t Mdsize = len(Md)
 	cdef np.int32_t xSize = len(x)
@@ -33,7 +33,7 @@ def P2M(np.ndarray[REAL, ndim = 1, mode = "c"] M, np.ndarray[REAL, ndim = 1, mod
 	cdef np.int32_t Ksize = len(K)
 	P2M_cy(<REAL*> &M[0], <int> Msize, <REAL*> &Md[0], <int> Mdsize, <REAL*> &x[0], <int> xSize, <REAL*> &y[0], <int> ySize, <REAL*> &z[0], <int> zSize, <REAL*> &m[0], <int> mSize, <REAL*> &mx[0], <int> mxSize, <REAL*> &my[0], <int> mySize, <REAL*> &mz[0], <int> mzSize, <REAL> xc, <REAL> yc, <REAL> zc, <int*> &I[0], <int> Isize, <int*> &J[0], <int> Jsize, <int*> &K[0], <int> Ksize)
 
-def M2M(np.ndarray[REAL, ndim = 1, mode = "c"] MP, np.ndarray[REAL, ndim = 1, mode = "c"] MC, REAL dx, REAL dy, REAL dz, np.ndarray[int, ndim = 1, mode = "c"] I, np.ndarray[int, ndim = 1, mode = "c"] J, np.ndarray[int, ndim = 1, mode = "c"] K, np.ndarray[REAL, ndim = 1, mode = "c"] cI, np.ndarray[REAL, ndim = 1, mode = "c"] cJ, np.ndarray[REAL, ndim = 1, mode = "c"] cK, np.ndarray[int, ndim = 1, mode = "c"] Imi, np.ndarray[int, ndim = 1, mode = "c"] Jmj, np.ndarray[int, ndim = 1, mode = "c"] Kmk, np.ndarray[int, ndim = 1, mode = "c"] index, np.ndarray[int, ndim = 1, mode = "c"] ptr):
+def M2M(np.ndarray[REAL, ndim = 1, mode = "c"] MP, np.ndarray[REAL, ndim = 1] MC, REAL dx, REAL dy, REAL dz, np.ndarray[int, ndim = 1] I, np.ndarray[int, ndim = 1] J, np.ndarray[int, ndim = 1] K, np.ndarray[REAL, ndim = 1] cI, np.ndarray[REAL, ndim = 1] cJ, np.ndarray[REAL, ndim = 1] cK, np.ndarray[int, ndim = 1] Imi, np.ndarray[int, ndim = 1] Jmj, np.ndarray[int, ndim = 1] Kmk, np.ndarray[int, ndim = 1] index, np.ndarray[int, ndim = 1] ptr):
 	cdef np.int32_t MPsize = len(MP)
 	cdef np.int32_t MCsize = len(MC)
 	cdef np.int32_t Isize = len(I)

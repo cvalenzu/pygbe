@@ -58,12 +58,12 @@ cdef extern from "multipole.h":
 
 def multipole_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, 
                    np.ndarray[REAL, ndim = 1, mode = "c"] V_aux,
-                   np.ndarray[REAL, ndim = 1, mode = "c"] M, 
-                   np.ndarray[REAL, ndim = 1, mode = "c"] Md, 
-                   np.ndarray[REAL, ndim = 1, mode = "c"] dx, 
-                   np.ndarray[REAL, ndim = 1, mode = "c"] dy, 
-                   np.ndarray[REAL, ndim = 1, mode = "c"] dz,
-                   np.ndarray[int, ndim = 1, mode = "c"] index,
+                   np.ndarray[REAL, ndim = 1] M, 
+                   np.ndarray[REAL, ndim = 1] Md, 
+                   np.ndarray[REAL, ndim = 1] dx, 
+                   np.ndarray[REAL, ndim = 1] dy, 
+                   np.ndarray[REAL, ndim = 1] dz,
+                   np.ndarray[int, ndim = 1] index,
                    int P, REAL kappa, int Nm, int LorY):
 	cdef np.int32_t K_auxSize = len(K_aux)
 	cdef np.int32_t V_auxSize = len(V_aux)
@@ -85,18 +85,18 @@ def multipole_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux,
 
 def multipole_sort(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, 
                     np.ndarray[REAL, ndim = 1, mode = "c"] V_aux,
-                    np.ndarray[int, ndim = 1, mode = "c"] offTar,
-                    np.ndarray[int, ndim = 1, mode = "c"] sizeTar,
-                    np.ndarray[int, ndim = 1, mode = "c"] offMlt,
-                    np.ndarray[REAL, ndim = 1, mode = "c"] M, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] Md, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] xi, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] yi, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] zi,
-                    np.ndarray[REAL, ndim = 1, mode = "c"] xc, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] yc, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] zc,
-                    np.ndarray[int, ndim = 1, mode = "c"] index,
+                    np.ndarray[int, ndim = 1] offTar,
+                    np.ndarray[int, ndim = 1] sizeTar,
+                    np.ndarray[int, ndim = 1] offMlt,
+                    np.ndarray[REAL, ndim = 1] M, 
+                    np.ndarray[REAL, ndim = 1] Md, 
+                    np.ndarray[REAL, ndim = 1] xi, 
+                    np.ndarray[REAL, ndim = 1] yi, 
+                    np.ndarray[REAL, ndim = 1] zi,
+                    np.ndarray[REAL, ndim = 1] xc, 
+                    np.ndarray[REAL, ndim = 1] yc, 
+                    np.ndarray[REAL, ndim = 1] zc,
+                    np.ndarray[int, ndim = 1] index,
                     int P, REAL kappa, int Nm, int LorY):
 	cdef np.int32_t K_auxSize = len(K_aux)
 	cdef np.int32_t V_auxSize = len(V_aux)
@@ -132,17 +132,17 @@ def multipole_sort(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux,
 def multipoleKt_sort(np.ndarray[REAL, ndim = 1, mode = "c"] Ktx_aux, 
                     np.ndarray[REAL, ndim = 1, mode = "c"] Kty_aux,
                     np.ndarray[REAL, ndim = 1, mode = "c"] Ktz_aux,
-                    np.ndarray[int, ndim = 1, mode = "c"] offTar,
-                    np.ndarray[int, ndim = 1, mode = "c"] sizeTar,
-                    np.ndarray[int, ndim = 1, mode = "c"] offMlt,
-                    np.ndarray[REAL, ndim = 1, mode = "c"] M, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] xi, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] yi, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] zi,
-                    np.ndarray[REAL, ndim = 1, mode = "c"] xc, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] yc, 
-                    np.ndarray[REAL, ndim = 1, mode = "c"] zc,
-                    np.ndarray[int, ndim = 1, mode = "c"] index,
+                    np.ndarray[int, ndim = 1] offTar,
+                    np.ndarray[int, ndim = 1] sizeTar,
+                    np.ndarray[int, ndim = 1] offMlt,
+                    np.ndarray[REAL, ndim = 1] M, 
+                    np.ndarray[REAL, ndim = 1] xi, 
+                    np.ndarray[REAL, ndim = 1] yi, 
+                    np.ndarray[REAL, ndim = 1] zi,
+                    np.ndarray[REAL, ndim = 1] xc, 
+                    np.ndarray[REAL, ndim = 1] yc, 
+                    np.ndarray[REAL, ndim = 1] zc,
+                    np.ndarray[int, ndim = 1] index,
                     int P, REAL kappa, int Nm, int LorY):
 	cdef np.int32_t Ktx_auxSize = len(Ktx_aux)
 	cdef np.int32_t Kty_auxSize = len(Kty_aux)
@@ -174,7 +174,7 @@ def multipoleKt_sort(np.ndarray[REAL, ndim = 1, mode = "c"] Ktx_aux,
                     <int*> &index[0], <int> indexSize,
                     <int> P, <REAL> kappa, <int> Nm, <int> LorY)
 
-def getIndex_arr(int P, int N, np.ndarray[int, ndim = 1, mode = "c"] indices, np.ndarray[int, ndim = 1, mode = "c"] ii, np.ndarray[int, ndim = 1, mode = "c"] jj, np.ndarray[int, ndim = 1, mode = "c"] kk):
+def getIndex_arr(int P, int N, np.ndarray[int, ndim = 1, mode = "c"] indices, np.ndarray[int, ndim = 1] ii, np.ndarray[int, ndim = 1] jj, np.ndarray[int, ndim = 1] kk):
 	cdef np.int32_t indicesSize = len(indices)
 	cdef np.int32_t iiSize = len(ii)
 	cdef np.int32_t jjSize = len(jj)
