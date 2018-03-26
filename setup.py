@@ -29,17 +29,14 @@ class CustomInstall(install):
         #setuptools cleanup is weak, do it manually
         cmdline = ''.join(sys.argv[1:])
         if 'clean' in cmdline:
-            for tree in ['PyGBe.egg-info', 'build', 'dist']:
+            for tree in ['PyGBe.egg-info', 'build', 'dist', '__pycache__']:
                 shutil.rmtree(tree, ignore_errors=True)
             for cyfile in [
-                    'pygbe/tree/calculateMultipoles.py',
-                    'pygbe/tree/calculateMultipoles_wrap.cpp',
-                    'pygbe/tree/direct.py',
-                    'pygbe/tree/direct_wrap.cpp',
-                    'pygbe/tree/multipole.py',
-                    'pygbe/tree/multipole_wrap.cpp',
-                    'pygbe/util/semi_analyticalwrap.py',
-                    'pygbe/util/semi_analyticalwrap_wrap.cpp',]:
+                    'pygbe/tree/calculateMultipoles.cpp',
+                    'pygbe/tree/direct.cpp',
+                    'pygbe/tree/multipole.cpp',
+                    'pygbe/util/semi_analyticalwrap.cpp',
+                    'versioneer.pyc',]:
                 os.remove(cyfile)
 
 def main():
