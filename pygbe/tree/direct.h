@@ -36,15 +36,6 @@ void GQ_fineKt(REAL &PHI_Ktx, REAL &PHI_Kty, REAL &PHI_Ktz, REAL *panel,
             REAL xi, REAL yi, REAL zi, REAL kappa, REAL *Xk, REAL *Wk, 
             int K_fine, REAL Area, int LorY);
 
-void directKt_sort_cy(REAL *Ktx_aux, int Ktx_auxSize, REAL *Kty_aux, int Kty_auxSize, REAL *Ktz_aux, int Ktz_auxSize, 
-        int LorY, REAL *triangle, int triangleSize,
-        int *k, int kSize, REAL *s_xj, int s_xjSize, REAL *s_yj, int s_yjSize, REAL *s_zj, int s_zjSize, 
-        REAL *xt, int xtSize, REAL *yt, int ytSize, REAL *zt, int ztSize,
-        REAL *m, int mSize, REAL *mKclean, int mKcleanSize,
-        int *interList, int interListSize, int *offTar, int offTarSize, int *sizeTar, int sizeTarSize, 
-        int *offSrc, int offSrcSize, int *offTwg, int offTwgSize, REAL *Area, int AreaSize,
-        REAL *Xsk, int XskSize, REAL *Wsk, int WskSize, REAL kappa, REAL threshold, REAL eps, REAL *aux, int auxSize);
-
 
 void direct_c_cy(REAL *K_aux, int K_auxSize, REAL *V_aux, int V_auxSize, int LorY, REAL K_diag, REAL V_diag, int IorE, REAL *triangle, int triangleSize,
         int *tri, int triSize, int *k, int kSize, REAL *xi, int xiSize, REAL *yi, int yiSize, 
@@ -65,11 +56,18 @@ void direct_sort_cy(REAL *K_aux, int K_auxSize, REAL *V_aux, int V_auxSize, int 
         REAL *xk, int xkSize, REAL *wk, int wkSize, REAL *Xsk, int XskSize, REAL *Wsk, int WskSize,
         REAL kappa, REAL threshold, REAL eps, REAL w0, REAL *aux, int auxSize);
 
+void directKt_sort_cy(REAL *Ktx_aux, int Ktx_auxSize, REAL *Kty_aux, int Kty_auxSize, REAL *Ktz_aux, int Ktz_auxSize, 
+        int LorY, REAL *triangle, int triangleSize,
+        int *k, int kSize, REAL *s_xj, int s_xjSize, REAL *s_yj, int s_yjSize, REAL *s_zj, int s_zjSize, 
+        REAL *xt, int xtSize, REAL *yt, int ytSize, REAL *zt, int ztSize,
+        REAL *m, int mSize, REAL *mKclean, int mKcleanSize,
+        int *interList, int interListSize, int *offTar, int offTarSize, int *sizeTar, int sizeTarSize, 
+        int *offSrc, int offSrcSize, int *offTwg, int offTwgSize, REAL *Area, int AreaSize,
+        REAL *Xsk, int XskSize, REAL *Wsk, int WskSize, REAL kappa, REAL threshold, REAL eps, REAL *aux, int auxSize);
+
+
 void coulomb_direct_cy(REAL *xt, int xtSize, REAL *yt, int ytSize, REAL *zt, int ztSize, 
                     REAL *m, int mSize, REAL *K_aux, int K_auxSize);
-
-
-
 
 
 

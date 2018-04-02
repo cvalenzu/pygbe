@@ -123,7 +123,9 @@ def project(XK, XV, LorY, surfSrc, surfTar, K_diag, V_diag, IorE, self, param,
 
     ### CPU code
     if param.GPU == 0:
-        K_aux, V_aux = M2P_sort(surfSrc, surfTar, K_aux, V_aux, self,
+
+        if surfTar.offsetMlt[self, len(surfTar.twig)] > 0:
+        	K_aux, V_aux = M2P_sort(surfSrc, surfTar, K_aux, V_aux, self,
                                 ind0.index_large, param, LorY, timing)
 
         K_aux, V_aux = P2P_sort(surfSrc, surfTar, X_V, X_Kx, X_Ky, X_Kz, X_Kc,
