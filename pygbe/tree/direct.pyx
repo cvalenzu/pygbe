@@ -182,8 +182,8 @@ def direct_c(np.ndarray[REAL, ndim = 1, mode = "c"] K_aux, np.ndarray[REAL, ndim
         	<REAL> kappa, <REAL> threshold, <REAL> eps, <REAL> w0, <REAL*> &aux[0], <int> auxSize)
 
 
-def coulomb_direct(np.ndarray[REAL, ndim = 1 ] xt, np.ndarray[REAL, ndim = 1 ] yt, np.ndarray[REAL, ndim = 1 ] zt, 
-                   np.ndarray[REAL, ndim = 1 ] m, np.ndarray[REAL, ndim = 1, mode = "c"] K_aux):
+def coulomb_direct(np.ndarray[REAL, ndim = 1, mode = "c"] xt, np.ndarray[REAL, ndim = 1, mode = "c"] yt, np.ndarray[REAL, ndim = 1, mode = "c"] zt, 
+                   np.ndarray[REAL, ndim = 1, mode = "c"] m, np.ndarray[REAL, ndim = 1, mode = "c"] K_aux):
 	cdef np.int32_t xtSize = len(xt)
 	cdef np.int32_t ytSize = len(yt)
 	cdef np.int32_t ztSize = len(zt)

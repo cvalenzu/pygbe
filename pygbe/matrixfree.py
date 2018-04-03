@@ -1304,7 +1304,7 @@ def coulomb_energy(f, param):
     """
 
     point_energy = numpy.zeros(len(f.q), param.REAL)
-    coulomb_direct(f.xq[:, 0], f.xq[:, 1], f.xq[:, 2], f.q, point_energy)
+    coulomb_direct(numpy.ravel(f.xq[:, 0]), numpy.ravel(f.xq[:, 1]), numpy.ravel(f.xq[:, 2]), numpy.ravel(f.q), numpy.ravel(point_energy))
 
     cal2J = 4.184
     C0 = param.qe**2 * param.Na * 1e-3 * 1e10 / (cal2J * param.E_0)
