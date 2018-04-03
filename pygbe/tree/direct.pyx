@@ -44,7 +44,7 @@ cdef extern from "direct.h":
         	
 
 
-def computeDiagonal(np.ndarray[REAL, ndim = 1, mode = "c"] VL, np.ndarray[REAL, ndim = 1, mode = "c"] KL, np.ndarray[REAL, ndim = 1, mode = "c"] VY, np.ndarray[REAL, ndim = 1, mode = "c"] KY, np.ndarray[REAL, ndim = 1 ] triangle, np.ndarray[REAL, ndim = 1 ] centers, REAL kappa, REAL K_diag, REAL V_diag, np.ndarray[REAL, ndim = 1 ] xk, np.ndarray[REAL, ndim = 1 ]wk):
+def computeDiagonal(np.ndarray[REAL, ndim = 1, mode = "c"] VL, np.ndarray[REAL, ndim = 1, mode = "c"] KL, np.ndarray[REAL, ndim = 1, mode = "c"] VY, np.ndarray[REAL, ndim = 1, mode = "c"] KY, np.ndarray[REAL, ndim = 1, mode = "c"] triangle, np.ndarray[REAL, ndim = 1, mode = "c"] centers, REAL kappa, REAL K_diag, REAL V_diag, np.ndarray[REAL, ndim = 1, mode = "c"] xk, np.ndarray[REAL, ndim = 1, mode = "c"] wk):
 	cdef np.int32_t VLSize = len(VL)
 	cdef np.int32_t KLSize = len(KL)
 	cdef np.int32_t VYSize = len(VY)
