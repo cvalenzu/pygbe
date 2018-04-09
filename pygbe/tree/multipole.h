@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
+#include <omp.h>
 #define REAL double
 
 int setIndex_cy(int P, int i, int j, int k);
@@ -1146,6 +1147,7 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 
         for(int CJ=CJ_begin; CJ<CJ_end; CJ++)
         {
+            #pragma omp parallel for private(a, dx, dy, dz) shared(xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux)
             for (int i=CI_begin; i<CI_end; i++)
             {   
                 for (int ii=0; ii<Nm; ii++)
