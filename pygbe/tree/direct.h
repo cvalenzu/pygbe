@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <sys/time.h>
+#include <omp.h>
 #define REAL double
 
 double get_time (void);
@@ -545,6 +546,8 @@ void direct_sort_cy(REAL *K_aux, int K_auxSize, REAL *V_aux, int V_auxSize, int 
         list_start = offTwg[tarTwg];
         list_end   = offTwg[tarTwg+1];
 
+
+        #pragma omp parallel for private(sum_K, sum_V, CJ, CJ_start, CJ_end, dx_tri, dy_tri, dz_tri, R_tri, L_d, same, condition_an, condition_gq, dx, dy, dz, R, R2, R3, expKr, start, stop) shared(list_start, list_end, interList, offSrc, triangle, xt, yt, zt, Area, eps, threshold, k, s_xj, s_yj, s_zj, LorY, kappa, m, mx, my, mz, aux, K_diag, IorE, sglInt_int, sglInt_ext, Xsk, XskSize, Wsk, WskSize, mVclean, mKclean, V_aux, K_aux)
         for(int i=CI_start; i<CI_end; i++)
         {  
             sum_K = 0.;
