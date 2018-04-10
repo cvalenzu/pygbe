@@ -1137,6 +1137,7 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 {
     REAL a[Nm], dx, dy, dz;
     int CI_begin, CI_end, CJ_begin, CJ_end;
+    //omp_set_num_threads(8);
 
     for(int CI=0; CI<offTarSize; CI++)
     {
