@@ -1135,9 +1135,9 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
                     int *index, int indexSize,
                     int P, REAL kappa, int Nm, int LorY)
 {
-    REAL a[Nm], dx, dy, dz;
+    REAL a[Nm], dx, dy, dz, Va, Ka;
     int CI_begin, CI_end, CJ_begin, CJ_end;
-    //omp_set_num_threads(8);
+    //omp_set_num_threads(2);
 
     for(int CI=0; CI<offTarSize; CI++)
     {
@@ -1148,9 +1148,12 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 
         for(int CJ=CJ_begin; CJ<CJ_end; CJ++)
         {
-            #pragma omp parallel for private(a, dx, dy, dz) shared(xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux)
+            #pragma omp parallel for private(Va, Ka, a, dx, dy, dz) shared(xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux, index, P, kappa, LorY)
             for (int i=CI_begin; i<CI_end; i++)
             {   
+                Va = 0.;
+                Ka = 0.;
+
                 for (int ii=0; ii<Nm; ii++)
                 {   
                     a[ii] = 0.; 
@@ -1165,9 +1168,12 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 
                 for (int j=0; j<Nm; j++)
                 {   
-                    V_aux[i] += a[j]*M[CJ*Nm+j];
-                    K_aux[i] += a[j]*Md[CJ*Nm+j];
-                } 
+                    Va += a[j]*M[CJ*Nm+j];
+                    Ka += a[j]*Md[CJ*Nm+j];
+                }
+                
+                V_aux[i] += Va;
+                K_aux[i] += Ka;
             }   
         }
     }
