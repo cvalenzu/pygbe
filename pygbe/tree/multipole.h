@@ -1135,10 +1135,11 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
                     int *index, int indexSize,
                     int P, REAL kappa, int Nm, int LorY)
 {
-    REAL a[Nm], dx, dy, dz, Va, Ka;
+    REAL a[Nm], dx, dy, dz, sum_V, sum_K;
     int CI_begin, CI_end, CJ_begin, CJ_end;
-    //omp_set_num_threads(2);
-
+    omp_set_num_threads(4);
+    
+    #pragma omp parallel for default(none) private(a, dx, dy, dz, sum_V, sum_K, CI_begin, CI_end, CJ_begin, CJ_end) shared(xi, xc, yi, yc, zi, zc, offTarSize, offTar, sizeTar, offMlt, index, Nm, P, kappa, LorY, M, Md, V_aux, K_aux)
     for(int CI=0; CI<offTarSize; CI++)
     {
         CI_begin = offTar[CI];
@@ -1146,35 +1147,35 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
         CJ_begin = offMlt[CI];
         CJ_end   = offMlt[CI+1];
 
-        for(int CJ=CJ_begin; CJ<CJ_end; CJ++)
+        //#pragma omp parallel for default(none) private(a, dx, dy, dz) shared(CI_begin, CI_end, CJ_begin, CJ_end, xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux, index, P, kappa, LorY) reduction(+:sum_V, sum_K) schedule(guided)
+        for (int i=CI_begin; i<CI_end; i++)
         {
-            #pragma omp parallel for private(Va, Ka, a, dx, dy, dz) shared(xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux, index, P, kappa, LorY)
-            for (int i=CI_begin; i<CI_end; i++)
+            sum_V = 0.;
+            sum_K = 0.;
+
+            for (int ii=0; ii<Nm; ii++)
             {   
-                Va = 0.;
-                Ka = 0.;
+                a[ii] = 0.; 
+            } 
 
-                for (int ii=0; ii<Nm; ii++)
-                {   
-                    a[ii] = 0.; 
-                }   
-
+            //#pragma omp parallel for default(none) private(dx, dy, dz, a) shared(xi, yi, zi, xc, yc, zc, i, M, Md, Nm, kappa, index, P, LorY, V_aux, K_aux, CJ_begin, CJ_end) reduction(+:sum_V, sum_K) schedule(static, 1)
+            for(int CJ=CJ_begin; CJ<CJ_end; CJ++)            
+            {   
                 dx = xi[i] - xc[CJ];
                 dy = yi[i] - yc[CJ];
                 dz = zi[i] - zc[CJ];
 
-                getCoeff(a, dx, dy, dz, index,  
-                        Nm, P, kappa, LorY);
+                getCoeff(a, dx, dy, dz, index, Nm, P, kappa, LorY);
 
                 for (int j=0; j<Nm; j++)
                 {   
-                    Va += a[j]*M[CJ*Nm+j];
-                    Ka += a[j]*Md[CJ*Nm+j];
+                    sum_V += a[j]*M[CJ*Nm+j];
+                    sum_K += a[j]*Md[CJ*Nm+j];
                 }
-                
-                V_aux[i] += Va;
-                K_aux[i] += Ka;
-            }   
+            }
+
+            V_aux[i] += sum_V;
+            K_aux[i] += sum_K;
         }
     }
 };

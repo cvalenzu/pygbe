@@ -538,7 +538,7 @@ void direct_sort_cy(REAL *K_aux, int K_auxSize, REAL *V_aux, int V_auxSize, int 
     int CI_start, CI_end, CJ_start, CJ_end, list_start, list_end, CJ;
     REAL dx, dy, dz, dx_tri, dy_tri, dz_tri, R, R2, R3, R_tri, expKr, sum_K, sum_V;
     bool L_d, same, condition_an, condition_gq;
-    omp_set_num_threads(2);
+    omp_set_num_threads(4);
 
     for (int tarTwg=0; tarTwg<offTarSize; tarTwg++)
     {
