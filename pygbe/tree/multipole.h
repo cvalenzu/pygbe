@@ -1137,9 +1137,9 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 {
     REAL a[Nm], dx, dy, dz, sum_V, sum_K;
     int CI_begin, CI_end, CJ_begin, CJ_end;
-    omp_set_num_threads(4);
+    omp_set_num_threads(1);
     
-    #pragma omp parallel for default(none) private(a, dx, dy, dz, sum_V, sum_K, CI_begin, CI_end, CJ_begin, CJ_end) shared(xi, xc, yi, yc, zi, zc, offTarSize, offTar, sizeTar, offMlt, index, Nm, P, kappa, LorY, M, Md, V_aux, K_aux)
+    //#pragma omp parallel for default(none) private(a, dx, dy, dz, sum_V, sum_K, CI_begin, CI_end, CJ_begin, CJ_end) shared(xi, xc, yi, yc, zi, zc, offTarSize, offTar, sizeTar, offMlt, index, Nm, P, kappa, LorY, M, Md, V_aux, K_aux)
     for(int CI=0; CI<offTarSize; CI++)
     {
         CI_begin = offTar[CI];
@@ -1147,7 +1147,7 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
         CJ_begin = offMlt[CI];
         CJ_end   = offMlt[CI+1];
 
-        //#pragma omp parallel for default(none) private(a, dx, dy, dz) shared(CI_begin, CI_end, CJ_begin, CJ_end, xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux, index, P, kappa, LorY) reduction(+:sum_V, sum_K) schedule(guided)
+        #pragma omp parallel for default(none) private(a, dx, dy, dz) shared(CI_begin, CI_end, CJ_begin, CJ_end, xi, yi, zi, xc, yc, zc, Nm, M, Md, V_aux, K_aux, index, P, kappa, LorY) reduction(+:sum_V, sum_K) schedule(guided)
         for (int i=CI_begin; i<CI_end; i++)
         {
             sum_V = 0.;
