@@ -1137,7 +1137,7 @@ void multipole_sort_cy(REAL *K_aux , int K_auxSize,
 {
     REAL a[Nm], dx, dy, dz, sum_V, sum_K;
     int CI_begin, CI_end, CJ_begin, CJ_end;
-    omp_set_num_threads(1);
+    omp_set_num_threads(4);
     
     //#pragma omp parallel for default(none) private(a, dx, dy, dz, sum_V, sum_K, CI_begin, CI_end, CJ_begin, CJ_end) shared(xi, xc, yi, yc, zi, zc, offTarSize, offTar, sizeTar, offMlt, index, Nm, P, kappa, LorY, M, Md, V_aux, K_aux)
     for(int CI=0; CI<offTarSize; CI++)
